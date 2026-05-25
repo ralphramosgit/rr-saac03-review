@@ -27,29 +27,48 @@ export default function SessionRunner({
     topic.noShuffle ? [...pool] : shuffle(pool),
   );
   const [index, setIndex] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [wrong, setWrong] = useState(0);
+  // Track answer status per question index: true=correct, false=wrong, undefined=unanswered.
+  // Lets us jump freely between questions without double-counting.
+  const [answers, setAnswers] = useState<Record<number, boolean>>({});
   const [done, setDone] = useState(false);
   const [exitConfirm, setExitConfirm] = useState(false);
 
   const total = questions.length;
   const q = questions[index];
 
+  const correct = Object.values(answers).filter((v) => v === true).length;
+  const wrong = Object.values(answers).filter((v) => v === false).length;
+  const answered = correct + wrong;
+
   const handleAnswer = (isCorrect: boolean) => {
-    if (isCorrect) {
-      setCorrect((c) => c + 1);
-      // remove from wrong list (mastered)
-      if (q) removeWrong(topic.id, q.id);
-    } else {
-      setWrong((w) => w + 1);
-      if (q) addWrong(topic.id, q.id);
-    }
+    setAnswers((prev) => ({ ...prev, [index]: isCorrect }));
+    if (!q) return;
+    if (isCorrect) removeWrong(topic.id, q.id);
+    else addWrong(topic.id, q.id);
   };
 
   const handleNext = () => {
-    if (index + 1 >= total) setDone(true);
-    else setIndex(index + 1);
+    if (index + 1 >= total) {
+      // Only mark done if everything is answered, otherwise jump to the first unanswered.
+      const firstUnanswered = questions.findIndex(
+        (_, i) => answers[i] === undefined,
+      );
+      if (firstUnanswered === -1) setDone(true);
+      else setIndex(firstUnanswered);
+    } else {
+      setIndex(index + 1);
+    }
   };
+
+  const handlePrev = () => {
+    if (index > 0) setIndex(index - 1);
+  };
+
+  const jumpTo = (i: number) => {
+    if (i >= 0 && i < total) setIndex(i);
+  };
+
+  const finishNow = () => setDone(true);
 
   if (total === 0) {
     return (
@@ -119,12 +138,80 @@ export default function SessionRunner({
         <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
           <div
             className="h-full bg-brand-500 transition-all"
-            style={{ width: `${(index / total) * 100}%` }}
+            style={{ width: `${(answered / total) * 100}%` }}
           />
         </div>
         <div className="flex justify-between text-xs text-slate-400 mt-2 tabular-nums">
           <span>✅ {correct}</span>
+          <span>
+            {answered} / {total} answered
+          </span>
           <span>❌ {wrong}</span>
+        </div>
+
+        {/* Question navigator — click any number to jump */}
+        <div className="mt-3 pt-3 border-t border-white/5">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[11px] uppercase tracking-wider text-slate-500">
+              Questions
+            </div>
+            <div className="flex gap-2">
+              <button
+                className="text-[11px] px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 disabled:opacity-40"
+                disabled={index === 0}
+                onClick={handlePrev}
+              >
+                ← Prev
+              </button>
+              <button
+                className="text-[11px] px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 disabled:opacity-40"
+                disabled={index >= total - 1}
+                onClick={() => jumpTo(index + 1)}
+              >
+                Next →
+              </button>
+              <button
+                className="text-[11px] px-2 py-1 rounded-md bg-brand-500/20 text-brand-200 hover:bg-brand-500/30"
+                onClick={finishNow}
+                title="End session and see your score"
+              >
+                Finish
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-12 lg:grid-cols-14 gap-1.5">
+            {questions.map((qq, i) => {
+              const status = answers[i];
+              const isCurrent = i === index;
+              const base =
+                "text-[11px] tabular-nums rounded-md border h-7 flex items-center justify-center transition";
+              const color =
+                status === true
+                  ? "bg-emerald-500/20 border-emerald-400/40 text-emerald-100"
+                  : status === false
+                    ? "bg-red-500/20 border-red-400/40 text-red-100"
+                    : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10";
+              const current = isCurrent
+                ? " ring-2 ring-brand-400 ring-offset-1 ring-offset-ink-900"
+                : "";
+              return (
+                <button
+                  key={qq.id}
+                  className={`${base} ${color}${current}`}
+                  onClick={() => jumpTo(i)}
+                  title={`Q${i + 1}${
+                    status === true
+                      ? " — correct"
+                      : status === false
+                        ? " — wrong"
+                        : " — unanswered"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
