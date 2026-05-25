@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Mermaid from "./Mermaid";
 import { STUDY_MODULES, extractToc, type SourceKind } from "../study-notes";
 
 type Props = { onBack: () => void };
@@ -218,6 +219,23 @@ export default function NotesPage({ onBack }: Props) {
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
+                    pre: ({ children, ...props }) => {
+                      // Detect fenced ```mermaid blocks and replace with diagram
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      const child: any = Array.isArray(children)
+                        ? children[0]
+                        : children;
+                      const className: string =
+                        child?.props?.className || "";
+                      if (/language-mermaid/.test(className)) {
+                        const code = String(child.props.children ?? "").replace(
+                          /\n$/,
+                          "",
+                        );
+                        return <Mermaid chart={code} />;
+                      }
+                      return <pre {...props}>{children}</pre>;
+                    },
                     h2: ({ children, ...props }) => {
                       const text = String(children);
                       return (
