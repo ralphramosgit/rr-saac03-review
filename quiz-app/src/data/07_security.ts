@@ -259,4 +259,45 @@ export const topic07: Topic = {
           },
           { left: "AWS Network Firewall", right: "Managed VPC L3/L7 firewall" },
         ]),
-    
+        mcq(
+          "07-wa-1",
+          "Block SQL injection at HTTP layer:",
+          ["NACL", "Shield", "WAF", "Security Group"],
+          2,
+          "WAF inspects L7 traffic for OWASP-style attacks.",
+        ),
+        mcq(
+          "07-wa-2",
+          "DDoS attack cost reimbursement & 24/7 DRT:",
+          ["Shield Standard", "Shield Advanced", "WAF", "Inspector"],
+          1,
+          "Shield Advanced includes cost protection + DDoS Response Team.",
+        ),
+      ],
+    },
+    {
+      id: "encryption-cheat",
+      title: "Encryption Cheat Sheet",
+      questions: [
+        match(
+          "07-en-m1",
+          "Match each service to default encryption capability.",
+          [
+            { left: "S3", right: "SSE-S3 default; SSE-KMS option" },
+            { left: "EBS", right: "Optional KMS at volume create" },
+            { left: "RDS / Aurora", right: "KMS at create only" },
+            { left: "DynamoDB", right: "KMS at rest (default)" },
+            { left: "CloudTrail logs", right: "SSE-KMS supported" },
+            { left: "In transit", right: "TLS via ACM certs" },
+          ],
+        ),
+        tf(
+          "07-en-1",
+          "RDS encryption can be added to an existing unencrypted DB in place.",
+          false,
+          "Must snapshot, copy snapshot with encryption, restore.",
+        ),
+      ],
+    },
+  ],
+};

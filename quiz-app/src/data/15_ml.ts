@@ -66,4 +66,12 @@ export const topic15: Topic = {
         ]),
         mcq(
           "15-sm-1",
-          "Detect model performance drift in produc
+          "Detect model performance drift in production:",
+          ["Clarify", "Model Monitor", "JumpStart", "Pipelines"],
+          1,
+          "Model Monitor watches data/quality drift.",
+        ),
+      ],
+    },
+  ],
+};

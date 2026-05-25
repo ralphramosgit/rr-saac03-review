@@ -120,4 +120,19 @@ export const topic10: Topic = {
           { left: "Use S3 lifecycle", right: "Transition to cheaper tiers" },
           {
             left: "Stop dev instances after hours",
-   
+            right: "Schedule with Instance Scheduler",
+          },
+          { left: "Right-size", right: "Use Compute Optimizer" },
+          { left: "Use Spot for batch", right: "Save up to 90%" },
+          { left: "Use VPC endpoints", right: "Avoid NAT egress costs" },
+        ]),
+        tf(
+          "10-cb-1",
+          "Cost allocation tags must be activated before they show in reports.",
+          true,
+          "You must activate them in the Billing console.",
+        ),
+      ],
+    },
+  ],
+};

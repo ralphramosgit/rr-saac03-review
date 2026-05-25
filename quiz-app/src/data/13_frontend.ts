@@ -47,4 +47,12 @@ export const topic13: Topic = {
         ]),
         mcq(
           "13-fr-1",
-          "Test your i
+          "Test your iOS/Android app on hundreds of real devices:",
+          ["Amplify", "AppSync", "Device Farm", "Pinpoint"],
+          2,
+          "Device Farm = real device testing.",
+        ),
+      ],
+    },
+  ],
+};

@@ -142,4 +142,34 @@ export const topic05: Topic = {
           "Migrate 200 TB once, then done:",
           [
             "Storage Gateway",
-       
+            "DataSync (or Snowball)",
+            "Transfer Family",
+            "DMS",
+          ],
+          1,
+          "DataSync for online, Snowball for offline. Storage GW is ongoing hybrid.",
+        ),
+      ],
+    },
+    {
+      id: "other-helpers",
+      title: "Other Migration Helpers",
+      questions: [
+        match("05-oh-m1", "Match each.", [
+          {
+            left: "AWS Migration Evaluator",
+            right: "TCO / discovery (formerly TSO Logic)",
+          },
+          {
+            left: "AWS Application Discovery Service",
+            right: "Discover on-prem apps & dependencies",
+          },
+          {
+            left: "Migration Hub Refactor Spaces",
+            right: "Incremental refactor / strangler fig",
+          },
+        ]),
+      ],
+    },
+  ],
+};

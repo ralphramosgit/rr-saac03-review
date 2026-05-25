@@ -373,4 +373,66 @@ export const topic03: Topic = {
         mcq(
           "03-sn-1",
           "Transfer 50 TB from on-prem to AWS with no/poor internet:",
-          ["
+          ["DataSync", "Snowball Edge", "Storage Gateway", "Direct Connect"],
+          1,
+          "Snowball Edge is ideal for offline bulk transfer.",
+        ),
+        tf(
+          "03-sn-2",
+          "Snowball Edge data is encrypted using KMS keys you control.",
+          true,
+          "AES-256 with KMS keys for data on device.",
+        ),
+      ],
+    },
+    {
+      id: "backup",
+      title: "AWS Backup",
+      questions: [
+        match("03-bk-m1", "Match each AWS Backup capability.", [
+          { left: "Backup Plans", right: "Schedule + retention rules" },
+          {
+            left: "Backup Vaults",
+            right: "Encrypted storage with access policies",
+          },
+          { left: "Cross-region copy", right: "DR support" },
+          {
+            left: "Cross-account copy",
+            right: "Isolation from compromised accounts",
+          },
+          {
+            left: "Supported services",
+            right: "EBS, RDS, DDB, EFS, FSx, S3, Storage GW, etc.",
+          },
+        ]),
+        mcq(
+          "03-bk-1",
+          "Centralized backup across many AWS services with compliance reporting:",
+          ["EBS snapshots", "AWS Backup", "DLM", "S3 versioning"],
+          1,
+          "AWS Backup = central, cross-service, compliance reports.",
+        ),
+      ],
+    },
+    {
+      id: "storage-decision",
+      title: "Storage Decision Matrix",
+      questions: [
+        match("03-de-m1", "Match each scenario to best storage choice.", [
+          { left: "Object storage / static website", right: "S3" },
+          { left: "Block storage for one EC2", right: "EBS" },
+          { left: "Shared NFS file system (Linux)", right: "EFS" },
+          { left: "SMB / AD file share", right: "FSx for Windows" },
+          { left: "HPC scratch with S3", right: "FSx Lustre" },
+          { left: "On-prem NFS to S3", right: "File Gateway" },
+          {
+            left: "One-time bulk transfer no internet",
+            right: "Snowball Edge",
+          },
+          { left: "Tape backup replacement", right: "Tape Gateway" },
+          { left: "Archive at lowest cost", right: "S3 Glacier Deep Archive" },
+        ]),
+      ],
+    },
+  ],
+};

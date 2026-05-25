@@ -338,4 +338,51 @@ export const topic04: Topic = {
           { left: "Timestream", right: "Time-series (IoT, ops metrics)" },
           {
             left: "MemoryDB for Redis",
-   
+            right: "Redis API as durable primary DB",
+          },
+        ]),
+        mcq(
+          "04-on-1",
+          "Social network friend-of-friend relationships:",
+          ["DocumentDB", "Neptune", "DynamoDB", "Redshift"],
+          1,
+          "Graph workloads = Neptune.",
+        ),
+        mcq(
+          "04-on-2",
+          "Audit trail that must be cryptographically immutable:",
+          ["RDS", "DynamoDB", "QLDB", "Aurora"],
+          2,
+          "QLDB = immutable ledger with cryptographic verification.",
+        ),
+      ],
+    },
+    {
+      id: "redshift",
+      title: "Amazon Redshift",
+      questions: [
+        match("04-rd-m1", "Match each Redshift feature.", [
+          { left: "Architecture", right: "Columnar, MPP, petabyte scale" },
+          { left: "Spectrum", right: "Query S3 data directly" },
+          { left: "Concurrency Scaling", right: "Auto-add capacity on demand" },
+          { left: "Materialized Views", right: "Pre-computed query results" },
+          { left: "Backup", right: "Automatic + cross-region copy" },
+          { left: "Serverless", right: "No cluster mgmt, auto-scale" },
+        ]),
+        mcq(
+          "04-rd-1",
+          "Query exabyte-scale data in S3 without loading:",
+          ["Redshift Spectrum", "Athena", "Both A and B", "EMR"],
+          2,
+          "Both Spectrum and Athena run SQL against S3.",
+        ),
+        tf(
+          "04-rd-2",
+          "Redshift is a row-based OLTP database.",
+          false,
+          "Redshift is columnar MPP for OLAP/analytics.",
+        ),
+      ],
+    },
+  ],
+};

@@ -181,4 +181,16 @@ export default function TopicMenu({ topic, onBack }: Props) {
               >
                 <div className="flex justify-between items-center">
                   <div className="font-semibold">{MODE_LABEL[m]}</div>
-                  <div className="chip
+                  <div className="chip">{count} q</div>
+                </div>
+                <div className="text-sm text-slate-400 mt-1">
+                  {MODE_DESC[m]}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}

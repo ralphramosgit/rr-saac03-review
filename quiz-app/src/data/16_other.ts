@@ -118,4 +118,15 @@ export const topic16: Topic = {
       id: "misc-services",
       title: "Miscellaneous Services",
       questions: [
-        m
+        match("16-mi-m1", "Match each service.", [
+          { left: "AWS WorkMail", right: "Managed business email + calendar" },
+          { left: "Amazon Chime", right: "Meetings / calls / chat" },
+          { left: "Amazon Connect", right: "Cloud contact center" },
+          { left: "AWS Ground Station", right: "Satellite communications" },
+          { left: "AWS RoboMaker", right: "Robotics simulation" },
+          { left: "Amazon Honeycode", right: "No-code apps (deprecated)" },
+        ]),
+      ],
+    },
+  ],
+};

@@ -197,3 +197,25 @@ export const topic08: Topic = {
           {
             left: "Service Catalog",
             right: "Curated portfolio of approved resources",
+          },
+          { left: "License Manager", right: "Track BYOL software licenses" },
+          {
+            left: "Resource Access Manager",
+            right: "Share resources across accounts",
+          },
+        ]),
+      ],
+    },
+    {
+      id: "cw-vs-ct-vs-config",
+      title: "CloudWatch vs CloudTrail vs Config",
+      questions: [
+        match("08-vs-m1", "Match each to its primary purpose.", [
+          { left: "CloudWatch", right: "Performance metrics & logs" },
+          { left: "CloudTrail", right: "Who did what (API audit)" },
+          { left: "AWS Config", right: "Resource state & compliance" },
+        ]),
+      ],
+    },
+  ],
+};

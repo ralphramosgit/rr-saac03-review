@@ -52,4 +52,12 @@ export const topic14: Topic = {
         ]),
         mcq(
           "14-as-1",
-       
+          "Stream a CAD app to thin clients without giving users full desktop:",
+          ["WorkSpaces", "AppStream 2.0", "EC2 Linux", "Cloud9"],
+          1,
+          "AppStream delivers single applications.",
+        ),
+      ],
+    },
+  ],
+};

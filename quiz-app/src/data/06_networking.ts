@@ -370,4 +370,61 @@ export const topic06: Topic = {
           { left: "Signed URL / Cookies", right: "Private content access" },
           { left: "Lambda@Edge", right: "Run code at edge (more capable)" },
           {
-            left: "CloudFront
+            left: "CloudFront Functions",
+            right: "Lightweight JS at viewer-request/response",
+          },
+          {
+            left: "Field-level encryption",
+            right: "Encrypt sensitive form fields",
+          },
+          { left: "Real-time logs", right: "Stream to Kinesis" },
+        ]),
+        mcq(
+          "06-cf-1",
+          "Restrict direct S3 access to CloudFront only:",
+          [
+            "Bucket policy ip range",
+            "Origin Access Control",
+            "Pre-signed URL",
+            "WAF",
+          ],
+          1,
+          "OAC (replaces OAI) is the recommended way.",
+        ),
+      ],
+    },
+    {
+      id: "ga",
+      title: "Global Accelerator",
+      questions: [
+        match("06-ga-m1", "Match each GA fact.", [
+          { left: "Layer", right: "4 (TCP/UDP)" },
+          { left: "IPs", right: "2 static anycast IPs" },
+          { left: "Route", right: "AWS global backbone" },
+          { left: "Failover", right: "Fast cross-region health-check" },
+          { left: "Targets", right: "ALB/NLB/EC2/EIP" },
+        ]),
+        mcq(
+          "06-ga-1",
+          "Need 2 static IPs and fast cross-region failover for non-HTTP app:",
+          ["CloudFront", "Global Accelerator", "Route 53 failover", "NLB"],
+          1,
+          "GA = static anycast IPs, L4, cross-region failover.",
+        ),
+      ],
+    },
+    {
+      id: "cf-vs-ga",
+      title: "CloudFront vs Global Accelerator",
+      questions: [
+        match("06-cg-m1", "Match each property.", [
+          { left: "HTTP caching", right: "CloudFront" },
+          { left: "TCP/UDP non-HTTP", right: "Global Accelerator" },
+          { left: "Static anycast IPs", right: "Global Accelerator" },
+          { left: "Edge function runtime", right: "CloudFront (Lambda@Edge)" },
+          { left: "Origin shielding & cache", right: "CloudFront" },
+        ]),
+      ],
+    },
+  ],
+};

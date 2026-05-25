@@ -70,4 +70,13 @@ export const topic11: Topic = {
           },
         ]),
         mcq(
-          "11-c9-
+          "11-c9-1",
+          "Quickly run a one-off AWS CLI command in your browser:",
+          ["Cloud9", "CloudShell", "CodeBuild", "Cloud Development Kit"],
+          1,
+          "CloudShell is the simplest free CLI in browser.",
+        ),
+      ],
+    },
+  ],
+};

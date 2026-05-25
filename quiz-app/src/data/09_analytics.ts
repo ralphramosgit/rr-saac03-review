@@ -192,4 +192,23 @@ export const topic09: Topic = {
         match("09-os-m1", "Match each OpenSearch fact.", [
           { left: "Use cases", right: "Logs, search, observability" },
           { left: "Engines", right: "OpenSearch + legacy Elasticsearch" },
-          { left: "Visualization", ri
+          { left: "Visualization", right: "OpenSearch Dashboards (Kibana)" },
+          { left: "Serverless", right: "OpenSearch Serverless option" },
+        ]),
+      ],
+    },
+    {
+      id: "quicksight",
+      title: "Amazon QuickSight",
+      questions: [
+        match("09-qs-m1", "Match each QS feature.", [
+          { left: "Purpose", right: "BI dashboards" },
+          { left: "SPICE", right: "In-memory accelerator" },
+          { left: "ML Insights", right: "Anomaly detection + forecast" },
+          { left: "Embedded analytics", right: "Embed dashboards in apps" },
+          { left: "Pricing", right: "Per session or per user" },
+        ]),
+      ],
+    },
+  ],
+};

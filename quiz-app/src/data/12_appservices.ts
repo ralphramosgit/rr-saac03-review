@@ -250,4 +250,45 @@ export const topic12: Topic = {
       title: "AppSync",
       questions: [
         match("12-ap-m1", "Match each AppSync fact.", [
-          { left: "API style", right: 
+          { left: "API style", right: "GraphQL (+ Pub/Sub)" },
+          { left: "Data sources", right: "DDB, RDS, OpenSearch, Lambda, HTTP" },
+          { left: "Offline / sync", right: "Amplify DataStore" },
+          { left: "Auth", right: "API key / IAM / Cognito / OIDC / Lambda" },
+        ]),
+      ],
+    },
+    {
+      id: "mq",
+      title: "Amazon MQ",
+      questions: [
+        match("12-mq-m1", "Match each MQ fact.", [
+          { left: "Engines", right: "RabbitMQ + ActiveMQ" },
+          {
+            left: "Use case",
+            right: "Lift & shift existing JMS / AMQP / STOMP / MQTT apps",
+          },
+          {
+            left: "Vs SQS/SNS",
+            right: "Use SQS/SNS for new cloud-native apps",
+          },
+        ]),
+      ],
+    },
+    {
+      id: "sqs-sns-eb-kds",
+      title: "SQS vs SNS vs EventBridge vs Kinesis",
+      questions: [
+        match("12-comp-m1", "Match each property.", [
+          { left: "Queue (pull)", right: "SQS" },
+          { left: "Topic (push)", right: "SNS" },
+          { left: "Bus / rules / SaaS", right: "EventBridge" },
+          { left: "Streaming, replay, ordered", right: "Kinesis Data Streams" },
+          {
+            left: "Retention default",
+            right: "SQS 4d / SNS none / EB none / KDS 24h",
+          },
+        ]),
+      ],
+    },
+  ],
+};
