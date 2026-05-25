@@ -1,4 +1,5 @@
 import type { Topic } from "../types";
+import { topicMasterCore } from "./00_master_core";
 import { topic00 } from "./00_critical";
 import { topic01 } from "./01_overview";
 import { topic02 } from "./02_compute";
@@ -20,6 +21,7 @@ import { topic17 } from "./17_comparisons";
 import { topic18 } from "./18_drills";
 
 export const TOPICS: Topic[] = [
+  topicMasterCore,
   topic00,
   topic01,
   topic02,

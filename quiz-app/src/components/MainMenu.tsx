@@ -70,7 +70,8 @@ export default function MainMenu({ onPick }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {TOPICS.map((t) => {
           const flagged = (wrongMap[t.id] || []).length;
-          const isCritical = t.id === "00-critical";
+          const isCritical = t.id === "00-critical" || t.id === "00-master-core";
+          const isMasterCore = t.id === "00-master-core";
           return (
             <button
               key={t.id}
@@ -92,7 +93,7 @@ export default function MainMenu({ onPick }: Props) {
                     </span>
                   </div>
                   <div className="font-semibold mt-1 leading-snug">
-                    {isCritical ? "🎯 " : ""}
+                    {isMasterCore ? "★ " : isCritical ? "🎯 " : ""}
                     {t.title}
                   </div>
                 </div>

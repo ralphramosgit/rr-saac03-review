@@ -180,12 +180,7 @@ export const topic00: Topic = {
         mcq(
           "cr-d-5",
           "In-memory cache specifically for DynamoDB (microsecond reads):",
-          [
-            "ElastiCache Redis",
-            "ElastiCache Memcached",
-            "DAX",
-            "Aurora Cache",
-          ],
+          ["ElastiCache Redis", "ElastiCache Memcached", "DAX", "Aurora Cache"],
           2,
           "DAX = DynamoDB Accelerator, microsecond read latency.",
         ),
@@ -275,12 +270,7 @@ export const topic00: Topic = {
         mcq(
           "cr-sec-1",
           "Service for storing and auto-rotating database credentials:",
-          [
-            "SSM Parameter Store Standard",
-            "Secrets Manager",
-            "KMS",
-            "IAM",
-          ],
+          ["SSM Parameter Store Standard", "Secrets Manager", "KMS", "IAM"],
           1,
           "Secrets Manager natively rotates DB credentials.",
         ),
@@ -346,7 +336,12 @@ export const topic00: Topic = {
         mcq(
           "cr-i-2",
           "Fan-out one message to multiple SQS queues:",
-          ["EventBridge only", "SNS → SQS subscriptions", "Lambda fan-out", "Step Functions"],
+          [
+            "EventBridge only",
+            "SNS → SQS subscriptions",
+            "Lambda fan-out",
+            "Step Functions",
+          ],
           1,
           "Classic fan-out: SNS topic with SQS queue subscriptions.",
         ),
@@ -360,7 +355,12 @@ export const topic00: Topic = {
         mcq(
           "cr-i-4",
           "Schedule a cron-like recurring job to invoke Lambda:",
-          ["SQS DelaySeconds", "EventBridge Scheduler / Rule", "Step Functions Wait", "SNS"],
+          [
+            "SQS DelaySeconds",
+            "EventBridge Scheduler / Rule",
+            "Step Functions Wait",
+            "SNS",
+          ],
           1,
           "EventBridge supports cron/rate scheduled rules.",
         ),
@@ -420,7 +420,12 @@ export const topic00: Topic = {
         mcq(
           "cr-m-5",
           "Forecast spend and alert before hitting a threshold:",
-          ["Cost Explorer", "Budgets", "CloudWatch Billing alarms", "Cost and Usage Report"],
+          [
+            "Cost Explorer",
+            "Budgets",
+            "CloudWatch Billing alarms",
+            "Cost and Usage Report",
+          ],
           1,
           "AWS Budgets supports forecasted + actual thresholds with alerts.",
         ),
@@ -439,7 +444,12 @@ export const topic00: Topic = {
         mcq(
           "cr-dr-1",
           "DR strategy with lowest RTO/RPO and highest cost:",
-          ["Backup & Restore", "Pilot Light", "Warm Standby", "Multi-Site Active-Active"],
+          [
+            "Backup & Restore",
+            "Pilot Light",
+            "Warm Standby",
+            "Multi-Site Active-Active",
+          ],
           3,
           "Multi-site active-active = near-zero RTO/RPO, most expensive.",
         ),

@@ -238,12 +238,7 @@ export const topic18: Topic = {
         mcq(
           "d03-2",
           "Which EC2 pricing model can be terminated by AWS with only 2 minutes warning?",
-          [
-            "Reserved Instance",
-            "Spot Instance",
-            "On-Demand",
-            "Dedicated Host",
-          ],
+          ["Reserved Instance", "Spot Instance", "On-Demand", "Dedicated Host"],
           1,
           "Spot can be reclaimed any time with a 2-minute warning.",
         ),
@@ -287,7 +282,12 @@ export const topic18: Topic = {
         mcq(
           "d03-7",
           "Maximum size of a Lambda deployment package (unzipped)?",
-          ["50 MB", "250 MB", "10 GB (container)", "Both 250 MB unzipped (zip) and 10 GB (container image) are valid limits"],
+          [
+            "50 MB",
+            "250 MB",
+            "10 GB (container)",
+            "Both 250 MB unzipped (zip) and 10 GB (container image) are valid limits",
+          ],
           3,
           "Zip: 50 MB zipped/250 MB unzipped. Container image: up to 10 GB.",
         ),
@@ -308,12 +308,7 @@ export const topic18: Topic = {
         mcq(
           "d03-10",
           "Which option provides hardware isolation for compliance/BYOL but is priced like On-Demand?",
-          [
-            "Dedicated Instance",
-            "Dedicated Host",
-            "Reserved Instance",
-            "Spot",
-          ],
+          ["Dedicated Instance", "Dedicated Host", "Reserved Instance", "Spot"],
           1,
           "Dedicated Host gives visibility of the physical socket for BYOL; Dedicated Instance only guarantees isolation.",
         ),
@@ -461,7 +456,12 @@ export const topic18: Topic = {
         mcq(
           "d05-3",
           "Aurora storage architecture stores how many copies and across how many AZs?",
-          ["3 copies / 2 AZs", "4 copies / 3 AZs", "6 copies / 3 AZs", "6 copies / 2 AZs"],
+          [
+            "3 copies / 2 AZs",
+            "4 copies / 3 AZs",
+            "6 copies / 3 AZs",
+            "6 copies / 2 AZs",
+          ],
           2,
           "Aurora stores 6 copies of data across 3 AZs (write quorum 4/6, read 3/6).",
         ),
@@ -775,12 +775,7 @@ export const topic18: Topic = {
         mcq(
           "d08-4",
           "An application requires strict ordering and exactly-once processing. Which queue?",
-          [
-            "SQS Standard",
-            "SQS FIFO",
-            "Kinesis Data Firehose",
-            "SNS Standard",
-          ],
+          ["SQS Standard", "SQS FIFO", "Kinesis Data Firehose", "SNS Standard"],
           1,
           "SQS FIFO = strict order + exactly-once. Standard is best-effort/at-least-once.",
         ),
@@ -813,12 +808,7 @@ export const topic18: Topic = {
         mcq(
           "d08-8",
           "Need to load streaming data into S3 with near real-time delivery and no shard management. Use:",
-          [
-            "Kinesis Data Streams",
-            "Kinesis Data Firehose",
-            "MSK",
-            "SNS",
-          ],
+          ["Kinesis Data Streams", "Kinesis Data Firehose", "MSK", "SNS"],
           1,
           "Firehose is fully managed, near real-time (60s buffer), serverless.",
         ),
@@ -886,12 +876,7 @@ export const topic18: Topic = {
         mcq(
           "d09-5",
           "Which Systems Manager feature gives shell access to EC2 instances without inbound SSH or a bastion host?",
-          [
-            "Run Command",
-            "Session Manager",
-            "Patch Manager",
-            "State Manager",
-          ],
+          ["Run Command", "Session Manager", "Patch Manager", "State Manager"],
           1,
           "Session Manager uses the SSM agent and IAM, no inbound ports needed, with full audit.",
         ),
@@ -1017,31 +1002,26 @@ export const topic18: Topic = {
         mcq(
           "d10-6",
           "Which service performs scheduled, automated, encrypted file transfers between on-premises and AWS (S3/EFS/FSx) up to 10x faster than open-source tools?",
-          [
-            "Storage Gateway",
-            "DataSync",
-            "Snowball",
-            "Transfer Family",
-          ],
+          ["Storage Gateway", "DataSync", "Snowball", "Transfer Family"],
           1,
           "DataSync: agent-based scheduled transfer, optimized, 10x faster than rsync/scp.",
         ),
         mcq(
           "d10-7",
           "Need managed SFTP/FTPS/FTP into S3 or EFS without running servers:",
-          [
-            "DataSync",
-            "Transfer Family",
-            "Storage Gateway",
-            "MGN",
-          ],
+          ["DataSync", "Transfer Family", "Storage Gateway", "MGN"],
           1,
           "AWS Transfer Family provides managed SFTP/FTPS/FTP endpoints.",
         ),
         mcq(
           "d10-8",
           "Which Snow device is rated for 100 PB capacity in a single shipment?",
-          ["Snowcone", "Snowball Edge Storage Optimized", "Snowmobile", "Snowball Compute Optimized"],
+          [
+            "Snowcone",
+            "Snowball Edge Storage Optimized",
+            "Snowmobile",
+            "Snowball Compute Optimized",
+          ],
           2,
           "Snowmobile is a 45-foot truck moving up to 100 PB.",
         ),
@@ -1152,12 +1132,7 @@ export const topic18: Topic = {
         mcq(
           "d11-9",
           "Existing on-prem Kafka cluster needs to move to AWS without rewriting consumers/producers. Choose:",
-          [
-            "Kinesis Data Streams",
-            "Amazon MSK",
-            "Kinesis Firehose",
-            "MQ",
-          ],
+          ["Kinesis Data Streams", "Amazon MSK", "Kinesis Firehose", "MQ"],
           1,
           "MSK is managed Apache Kafka, ideal for migrating existing Kafka workloads.",
         ),
@@ -1197,12 +1172,7 @@ export const topic18: Topic = {
         mcq(
           "d12-2",
           "Best caching layer in front of a DynamoDB read-heavy workload?",
-          [
-            "CloudFront",
-            "ElastiCache Memcached",
-            "DAX",
-            "Aurora Read Replica",
-          ],
+          ["CloudFront", "ElastiCache Memcached", "DAX", "Aurora Read Replica"],
           2,
           "DAX is the purpose-built in-memory cache for DynamoDB (microsecond reads).",
         ),
@@ -1221,12 +1191,7 @@ export const topic18: Topic = {
         mcq(
           "d12-4",
           "Cheapest DR strategy?",
-          [
-            "Multi-Site",
-            "Warm Standby",
-            "Pilot Light",
-            "Backup & Restore",
-          ],
+          ["Multi-Site", "Warm Standby", "Pilot Light", "Backup & Restore"],
           3,
           "Backup & Restore is cheapest; recovery is hours/days.",
         ),
@@ -1269,12 +1234,7 @@ export const topic18: Topic = {
         mcq(
           "d12-8",
           "Microservices in containers without managing EC2 hosts. Best fit?",
-          [
-            "ECS on EC2",
-            "ECS on Fargate",
-            "Lambda in a VPC",
-            "EKS on EC2",
-          ],
+          ["ECS on EC2", "ECS on Fargate", "Lambda in a VPC", "EKS on EC2"],
           1,
           "ECS on Fargate (or EKS on Fargate) is serverless containers.",
         ),
@@ -1294,7 +1254,10 @@ export const topic18: Topic = {
           "d12-10",
           "Match the cache layer to its primary use case:",
           [
-            { left: "CloudFront", right: "Edge caching of static/global content" },
+            {
+              left: "CloudFront",
+              right: "Edge caching of static/global content",
+            },
             { left: "ElastiCache", right: "Application-level DB query cache" },
             { left: "DAX", right: "In-memory cache for DynamoDB" },
           ],
@@ -1419,7 +1382,12 @@ export const topic18: Topic = {
         mcq(
           "d13-10",
           "AWS Budgets pricing: first N budgets are free; additional cost?",
-          ["First 2 free, $0.02/day each after", "All free", "First 5 free, $0.10/budget", "Always $1/budget"],
+          [
+            "First 2 free, $0.02/day each after",
+            "All free",
+            "First 5 free, $0.10/budget",
+            "Always $1/budget",
+          ],
           0,
           "First 2 Budgets per account are free, then $0.02 per budget per day.",
         ),
