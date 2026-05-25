@@ -16,7 +16,7 @@ type Selection =
 const MODE_LABEL: Record<Mode, string> = {
   mixed: "Mixed (all questions, random)",
   mcq: "Multiple choice only",
-  match: "Matching only (drag & drop)",
+  match: "Matching only (dropdown picker)",
   flash: "Flashcards only",
   review: "Review wrong answers",
 };
@@ -24,7 +24,7 @@ const MODE_LABEL: Record<Mode, string> = {
 const MODE_DESC: Record<Mode, string> = {
   mixed: "Every question from every table, shuffled. General drill.",
   mcq: "Multiple choice + true/false from every table.",
-  match: "Drag-and-drop matching for every table.",
+  match: "Dropdown-style matching: pick the right answer from a list.",
   flash: "Flashcards for active recall.",
   review: "Only questions you previously got wrong.",
 };
@@ -124,7 +124,7 @@ export default function TopicMenu({ topic, onBack }: Props) {
             test every row in each table
           </span>
         </div>
-        <div className="grid gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
           {topic.sections.map((s) => {
             const flagged = s.questions.filter((q) =>
               wrongIds.includes(q.id),
@@ -132,24 +132,21 @@ export default function TopicMenu({ topic, onBack }: Props) {
             return (
               <button
                 key={s.id}
-                className="card p-4 text-left active:scale-[0.99] hover:bg-ink-700/60 transition"
+                className="card p-3 text-left active:scale-[0.98] hover:bg-ink-700/60 transition min-h-[110px] flex flex-col justify-between"
                 onClick={() => setSelection({ kind: "section", section: s })}
               >
-                <div className="flex justify-between items-center gap-3">
-                  <div className="min-w-0">
-                    <div className="font-semibold truncate">{s.title}</div>
-                    <div className="text-xs text-slate-400 mt-0.5">
-                      {s.questions.length} questions in this table
-                    </div>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <div className="chip">{s.questions.length} q</div>
-                    {flagged > 0 && (
-                      <div className="text-xs text-red-300 mt-1">
-                        ⚑ {flagged}
-                      </div>
-                    )}
-                  </div>
+                <div className="font-semibold text-sm leading-snug line-clamp-3">
+                  {s.title}
+                </div>
+                <div className="flex items-end justify-between mt-2">
+                  <span className="chip text-[10px]">
+                    {s.questions.length} q
+                  </span>
+                  {flagged > 0 && (
+                    <span className="text-[10px] text-red-300">
+                      ⚑ {flagged}
+                    </span>
+                  )}
                 </div>
               </button>
             );

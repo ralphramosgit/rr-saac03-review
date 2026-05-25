@@ -53,6 +53,8 @@ export type Topic = {
     | "Useful";
   blurb: string;
   sections: TableSection[];
+  // When true, SessionRunner plays questions in their authored order (no shuffle).
+  noShuffle?: boolean;
 };
 
 export type Mode = "mixed" | "mcq" | "match" | "flash" | "review";

@@ -1,4 +1,5 @@
 import type { Topic } from "../types";
+import { topic00 } from "./00_critical";
 import { topic01 } from "./01_overview";
 import { topic02 } from "./02_compute";
 import { topic03 } from "./03_storage";
@@ -18,6 +19,7 @@ import { topic16 } from "./16_other";
 import { topic17 } from "./17_comparisons";
 
 export const TOPICS: Topic[] = [
+  topic00,
   topic01,
   topic02,
   topic03,

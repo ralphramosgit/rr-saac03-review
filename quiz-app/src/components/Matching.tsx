@@ -1,18 +1,6 @@
 import type { Matching as M } from "../types";
 import { useEffect, useMemo, useState } from "react";
 import { shuffle } from "../utils";
-import {
-  DndContext,
-  type DragEndEvent,
-  type DragStartEvent,
-  PointerSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-  useDraggable,
-  useDroppable,
-  DragOverlay,
-} from "@dnd-kit/core";
 
 type Props = {
   q: M;
@@ -20,170 +8,45 @@ type Props = {
   onNext: () => void;
 };
 
-const POOL_ID = "__pool__";
-
-function DraggableChip({ id, label }: { id: string; label: string }) {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id,
-  });
-  return (
-    <button
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      className={`rounded-xl px-3 py-2 text-sm border touch-none select-none cursor-grab active:cursor-grabbing transition ${
-        isDragging
-          ? "border-brand-500 bg-brand-500/20 text-brand-500 opacity-40"
-          : "border-white/10 bg-white/5 hover:bg-white/10"
-      }`}
-    >
-      {label}
-    </button>
-  );
-}
-
-function DropSlot({
-  id,
-  filled,
-  status,
-  onClear,
-  children,
-}: {
-  id: string;
-  filled: boolean;
-  status: "correct" | "wrong" | "idle";
-  onClear?: () => void;
-  children: React.ReactNode;
-}) {
-  const { isOver, setNodeRef } = useDroppable({ id });
-  const ring =
-    status === "correct"
-      ? "border-emerald-400 bg-emerald-500/15"
-      : status === "wrong"
-        ? "border-red-400 bg-red-500/15"
-        : isOver
-          ? "border-brand-500 bg-brand-500/10"
-          : "border-white/10 bg-ink-900/40";
-  return (
-    <div
-      ref={setNodeRef}
-      onClick={filled && onClear ? onClear : undefined}
-      className={`w-full text-left rounded-xl px-4 py-3 border transition ${ring} ${
-        filled ? "cursor-pointer" : ""
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function PoolArea({ children }: { children: React.ReactNode }) {
-  const { isOver, setNodeRef } = useDroppable({ id: POOL_ID });
-  return (
-    <div
-      ref={setNodeRef}
-      className={`flex flex-wrap gap-2 min-h-[3rem] rounded-xl p-2 border-2 border-dashed transition ${
-        isOver ? "border-brand-500 bg-brand-500/5" : "border-white/10"
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function Matching({ q, onAnswer, onNext }: Props) {
   const lefts = useMemo(() => q.pairs.map((p) => p.left), [q.id]);
-  const rightsCorrect = useMemo(() => q.pairs.map((p) => p.right), [q.id]);
-  const [pool, setPool] = useState<string[]>([]);
-  const [assigned, setAssigned] = useState<Record<string, string | null>>({});
+  const rights = useMemo(() => q.pairs.map((p) => p.right), [q.id]);
+  // Stable shuffled order for the option list shown on the side / dropdowns.
+  const optionOrder = useMemo(() => shuffle(rights), [q.id]);
+
+  const [assigned, setAssigned] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState(false);
-  const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
-    setPool(shuffle(rightsCorrect));
-    setAssigned(Object.fromEntries(lefts.map((l) => [l, null])));
+    setAssigned({});
     setChecked(false);
-    setActiveId(null);
   }, [q.id]);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(TouchSensor, {
-      activationConstraint: { delay: 120, tolerance: 8 },
-    }),
-  );
-
-  const allFilled = Object.values(assigned).every((v) => v !== null);
+  const allFilled = lefts.every((l) => assigned[l]);
   const correctCount = q.pairs.filter(
     (p) => assigned[p.left] === p.right,
   ).length;
   const allCorrect = correctCount === q.pairs.length;
 
-  const handleDragStart = (e: DragStartEvent) =>
-    setActiveId(String(e.active.id));
-
-  const handleDragEnd = (e: DragEndEvent) => {
-    setActiveId(null);
+  const onPick = (left: string, value: string) => {
     if (checked) return;
-    const item = String(e.active.id);
-    const target = e.over ? String(e.over.id) : null;
-    if (!target) return;
-
-    let fromLeft: string | null = null;
-    for (const l of lefts) if (assigned[l] === item) fromLeft = l;
-
-    const next = { ...assigned };
-
-    if (target === POOL_ID) {
-      if (fromLeft) {
-        next[fromLeft] = null;
-        setAssigned(next);
-        setPool((p) => (p.includes(item) ? p : [...p, item]));
-      }
-      return;
-    }
-
-    if (!lefts.includes(target)) return;
-    const displaced = next[target];
-    next[target] = item;
-    if (fromLeft) {
-      next[fromLeft] = displaced; // swap between slots
-      setAssigned(next);
-    } else {
-      // came from pool
-      setPool((p) => {
-        const rest = p.filter((x) => x !== item);
-        return displaced ? [...rest, displaced] : rest;
-      });
-      setAssigned(next);
-    }
-  };
-
-  const clearSlot = (l: string) => {
-    if (checked) return;
-    const val = assigned[l];
-    if (!val) return;
-    setAssigned({ ...assigned, [l]: null });
-    setPool((p) => [...p, val]);
+    setAssigned((prev) => ({ ...prev, [left]: value }));
   };
 
   return (
     <div className="card p-5 sm:p-6">
-      <div className="chip mb-3">Matching · drag &amp; drop</div>
+      <div className="chip mb-3">Matching · pick from dropdown</div>
       <h2 className="text-lg sm:text-xl font-semibold leading-snug mb-2">
         {q.prompt}
       </h2>
       <p className="text-xs text-slate-400 mb-4">
-        Drag an item from the pool onto its matching row. Tap a filled row to
-        clear it.
+        For each item on the left, choose its match from the dropdown. All
+        possible answers are listed on the side for reference.
       </p>
 
-      <DndContext
-        sensors={sensors}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        <div className="space-y-2.5 mb-4">
+      <div className="grid lg:grid-cols-[1fr_260px] gap-4">
+        {/* MAIN: left items + dropdowns */}
+        <div className="space-y-2.5">
           {lefts.map((l) => {
             const val = assigned[l];
             const correctPair = q.pairs.find((p) => p.left === l)!.right;
@@ -192,61 +55,83 @@ export default function Matching({ q, onAnswer, onNext }: Props) {
               : val === correctPair
                 ? "correct"
                 : "wrong";
+            const ring =
+              status === "correct"
+                ? "border-emerald-400 bg-emerald-500/10"
+                : status === "wrong"
+                  ? "border-red-400 bg-red-500/10"
+                  : "border-white/10 bg-ink-900/40";
+
             return (
-              <DropSlot
+              <div
                 key={l}
-                id={l}
-                filled={!!val}
-                status={status}
-                onClear={() => clearSlot(l)}
+                className={`rounded-xl px-3 py-2.5 border transition ${ring}`}
               >
-                <div className="flex justify-between items-center gap-3">
-                  <span className="font-medium">{l}</span>
-                  <span
-                    className={`text-sm ${val ? "text-emerald-300" : "text-slate-500"}`}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <span className="font-medium text-sm sm:text-base">{l}</span>
+                  <select
+                    disabled={checked}
+                    value={val ?? ""}
+                    onChange={(e) => onPick(l, e.target.value)}
+                    className="w-full sm:w-72 rounded-lg bg-ink-900/80 border border-white/10 px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-brand-500 disabled:opacity-80"
                   >
-                    {val ?? "— drop here —"}
-                  </span>
+                    <option value="" disabled>
+                      — select match —
+                    </option>
+                    {optionOrder.map((r) => (
+                      <option key={r} value={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              </DropSlot>
+                {checked && status === "wrong" && (
+                  <div className="text-xs text-emerald-300 mt-1">
+                    Correct: {correctPair}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
 
-        {!checked && (
-          <>
-            <div className="text-xs uppercase tracking-wider text-slate-400 mb-2">
-              Items (drag from here)
-            </div>
-            <PoolArea>
-              {pool.length === 0 ? (
-                <div className="text-sm text-slate-500">All assigned.</div>
-              ) : (
-                pool.map((r) => <DraggableChip key={r} id={r} label={r} />)
-              )}
-            </PoolArea>
+        {/* SIDE: all options list */}
+        <aside className="rounded-xl border border-white/10 bg-white/5 p-3 h-fit">
+          <div className="text-xs uppercase tracking-wider text-slate-400 mb-2 font-semibold">
+            All options
+          </div>
+          <ul className="space-y-1.5">
+            {optionOrder.map((r) => {
+              const used = Object.values(assigned).includes(r);
+              return (
+                <li
+                  key={r}
+                  className={`text-xs leading-snug px-2 py-1.5 rounded-md border ${
+                    used
+                      ? "border-brand-500/40 bg-brand-500/10 text-slate-200"
+                      : "border-white/10 bg-ink-900/40 text-slate-300"
+                  }`}
+                >
+                  {r}
+                </li>
+              );
+            })}
+          </ul>
+        </aside>
+      </div>
 
-            <button
-              disabled={!allFilled}
-              className={`btn-primary w-full mt-4 ${!allFilled ? "opacity-40" : ""}`}
-              onClick={() => {
-                setChecked(true);
-                onAnswer(allCorrect);
-              }}
-            >
-              Check answers
-            </button>
-          </>
-        )}
-
-        <DragOverlay>
-          {activeId ? (
-            <div className="rounded-xl px-3 py-2 text-sm border border-brand-500 bg-brand-500/30 text-brand-500 shadow-xl">
-              {activeId}
-            </div>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
+      {!checked && (
+        <button
+          disabled={!allFilled}
+          className={`btn-primary w-full mt-4 ${!allFilled ? "opacity-40" : ""}`}
+          onClick={() => {
+            setChecked(true);
+            onAnswer(allCorrect);
+          }}
+        >
+          Check answers
+        </button>
+      )}
 
       {checked && (
         <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-3 text-sm">

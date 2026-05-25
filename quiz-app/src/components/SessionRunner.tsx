@@ -22,7 +22,10 @@ export default function SessionRunner({
   onExit,
 }: Props) {
   // SHUFFLE on session start (each new session = new order). Reset by remounting.
-  const [questions] = useState<Question[]>(() => shuffle(pool));
+  // Topics flagged noShuffle (e.g. Critical Cram) keep authored order.
+  const [questions] = useState<Question[]>(() =>
+    topic.noShuffle ? [...pool] : shuffle(pool),
+  );
   const [index, setIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);

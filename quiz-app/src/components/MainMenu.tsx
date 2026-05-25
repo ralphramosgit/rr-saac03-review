@@ -67,16 +67,19 @@ export default function MainMenu({ onPick }: Props) {
         )}
       </div>
 
-      <div className="grid gap-2.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {TOPICS.map((t) => {
           const flagged = (wrongMap[t.id] || []).length;
+          const isCritical = t.id === "00-critical";
           return (
             <button
               key={t.id}
               onClick={() => onPick(t)}
-              className="card p-4 text-left active:scale-[0.99] hover:bg-ink-700/60 transition"
+              className={`card p-4 text-left active:scale-[0.99] hover:bg-ink-700/60 transition h-full flex flex-col ${
+                isCritical ? "ring-2 ring-brand-500/50 bg-brand-500/5" : ""
+              }`}
             >
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-xs text-slate-400 tabular-nums">
@@ -88,24 +91,23 @@ export default function MainMenu({ onPick }: Props) {
                       {t.weight}
                     </span>
                   </div>
-                  <div className="font-semibold mt-0.5 truncate">{t.title}</div>
-                  <div className="text-xs text-slate-400 mt-0.5 line-clamp-2">
-                    {t.blurb}
+                  <div className="font-semibold mt-1 leading-snug">
+                    {isCritical ? "🎯 " : ""}
+                    {t.title}
                   </div>
                 </div>
-                <div className="text-right shrink-0">
-                  <div className="text-xs text-slate-400">
-                    {allQuestions(t).length} q
+                {flagged > 0 && (
+                  <div className="text-xs text-red-300 shrink-0">
+                    ⚑ {flagged}
                   </div>
-                  <div className="text-[10px] text-slate-500">
-                    {t.sections.length} tables
-                  </div>
-                  {flagged > 0 && (
-                    <div className="text-xs text-red-300 mt-0.5">
-                      ⚑ {flagged}
-                    </div>
-                  )}
-                </div>
+                )}
+              </div>
+              <div className="text-xs text-slate-400 mt-2 line-clamp-3 flex-1">
+                {t.blurb}
+              </div>
+              <div className="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-2 border-t border-white/5">
+                <span>{allQuestions(t).length} questions</span>
+                <span>{t.sections.length} tables</span>
               </div>
             </button>
           );
