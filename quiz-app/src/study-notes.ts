@@ -54,8 +54,7 @@ type ModuleDef = {
   yash?: string[];
 };
 
-const SAA = (folder: string, file: string) =>
-  get(`./notes/${folder}/${file}`);
+const SAA = (folder: string, file: string) => get(`./notes/${folder}/${file}`);
 const YASH = (file: string) => get(`./notes/_yash/${file}`);
 const LOCAL = (file: string) => get(`./notes/_local/${file}`);
 
@@ -80,7 +79,13 @@ const DEFS: ModuleDef[] = [
     blurb:
       "Users, groups, roles, policies, identity federation, SSO, Cognito, STS. Permission boundaries, SCPs, and least privilege.",
     weight: "Critical",
-    keyServices: ["IAM", "STS", "Cognito", "IAM Identity Center", "Organizations"],
+    keyServices: [
+      "IAM",
+      "STS",
+      "Cognito",
+      "IAM Identity Center",
+      "Organizations",
+    ],
     local: ["07_Security_Identity.md"],
     saaFolder: "02-IAM",
     yash: ["19. Identity and Access Management (IAM) - Advanced.md"],
@@ -216,9 +221,7 @@ const DEFS: ModuleDef[] = [
     keyServices: ["CloudWatch", "CloudTrail", "Config", "X-Ray"],
     local: ["08_Management_Tools.md"],
     saaFolder: "09-Monitoring",
-    yash: [
-      "18. AWS Monitoring & Audit (CloudWatch, CloudTrail & Config).md",
-    ],
+    yash: ["18. AWS Monitoring & Audit (CloudWatch, CloudTrail & Config).md"],
   },
   {
     id: "10-migration",
@@ -400,7 +403,9 @@ export const STUDY_MODULES: StudyModule[] = DEFS.map((d) => ({
 })).filter((m) => m.sources.length > 0);
 
 /** Lightweight TOC: pull h2/h3 from markdown. */
-export function extractToc(md: string): { level: 2 | 3; text: string; id: string }[] {
+export function extractToc(
+  md: string,
+): { level: 2 | 3; text: string; id: string }[] {
   const out: { level: 2 | 3; text: string; id: string }[] = [];
   const lines = md.split(/\r?\n/);
   let inFence = false;

@@ -225,8 +225,7 @@ export default function NotesPage({ onBack }: Props) {
                       const child: any = Array.isArray(children)
                         ? children[0]
                         : children;
-                      const className: string =
-                        child?.props?.className || "";
+                      const className: string = child?.props?.className || "";
                       if (/language-mermaid/.test(className)) {
                         const code = String(child.props.children ?? "").replace(
                           /\n$/,

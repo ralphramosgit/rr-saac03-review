@@ -18,10 +18,7 @@ export default function App() {
       ) : view === "notes" ? (
         <NotesPage onBack={() => setView("menu")} />
       ) : (
-        <MainMenu
-          onPick={setTopic}
-          onOpenNotes={() => setView("notes")}
-        />
+        <MainMenu onPick={setTopic} onOpenNotes={() => setView("notes")} />
       )}
     </div>
   );
