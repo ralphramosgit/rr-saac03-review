@@ -6,6 +6,7 @@ import { useState } from "react";
 
 type Props = {
   onPick: (t: Topic) => void;
+  onOpenNotes: () => void;
 };
 
 const weightColor: Record<Topic["weight"], string> = {
@@ -18,7 +19,7 @@ const weightColor: Record<Topic["weight"], string> = {
   Useful: "bg-sky-500/20 text-sky-200 border-sky-400/30",
 };
 
-export default function MainMenu({ onPick }: Props) {
+export default function MainMenu({ onPick, onOpenNotes }: Props) {
   const [, force] = useState(0);
   const wrongMap = getWrong();
   const totalFlagged = Object.values(wrongMap).reduce(
@@ -28,6 +29,27 @@ export default function MainMenu({ onPick }: Props) {
 
   return (
     <div className="space-y-4">
+      <button
+        onClick={onOpenNotes}
+        className="card p-5 w-full text-left active:scale-[0.995] hover:bg-ink-700/60 transition ring-2 ring-brand-500/40 bg-gradient-to-br from-brand-500/10 to-transparent"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="text-xs uppercase tracking-wider text-brand-500 font-semibold">
+              📚 Study Notes
+            </div>
+            <div className="text-lg sm:text-xl font-bold mt-1">
+              Open All Module Notes
+            </div>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              Full README, Ultra-Fast-Learn, Fast-Learn, Diagrams & Practice
+              Questions for every SAA-C03 module — organized and searchable.
+            </p>
+          </div>
+          <div className="text-2xl text-brand-500 shrink-0">›</div>
+        </div>
+      </button>
+
       <div className="card p-5">
         <div className="flex items-center justify-between">
           <div>
