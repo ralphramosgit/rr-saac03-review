@@ -17,6 +17,7 @@ import { topic14 } from "./14_desktop";
 import { topic15 } from "./15_ml";
 import { topic16 } from "./16_other";
 import { topic17 } from "./17_comparisons";
+import { topic18 } from "./18_drills";
 
 export const TOPICS: Topic[] = [
   topic00,
@@ -37,4 +38,5 @@ export const TOPICS: Topic[] = [
   topic15,
   topic16,
   topic17,
+  topic18,
 ];
