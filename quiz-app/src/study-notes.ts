@@ -286,6 +286,56 @@ const DEFS: ModuleDef[] = [
     saaFolder: "14-Practice",
     yash: ["24. Other Services.md"],
   },
+  {
+    id: "18-disaster-recovery",
+    number: "18",
+    title: "Disaster Recovery",
+    emoji: "🚨",
+    blurb:
+      "HA vs FT vs DR, RTO vs RPO, the 4 DR strategies (Backup & Restore, Pilot Light, Warm Standby, Multi-Site), and AWS DR building blocks.",
+    weight: "High",
+    keyServices: [
+      "AWS Backup",
+      "Aurora Global",
+      "DynamoDB Global Tables",
+      "DRS",
+      "Route 53 Failover",
+      "Global Accelerator",
+    ],
+    local: ["18_Disaster_Recovery.md"],
+  },
+  {
+    id: "19-scaling-load-balancing",
+    number: "19",
+    title: "Auto Scaling & Load Balancing",
+    emoji: "⚖️",
+    blurb:
+      "ALB / NLB / GWLB deep dive, ASG mechanics, scaling policies (Simple / Step / Target Tracking / Predictive), lifecycle hooks, health checks, and exam patterns.",
+    weight: "Critical",
+    keyServices: ["ALB", "NLB", "GWLB", "ASG", "Launch Template", "Target Group"],
+    local: ["19_Scaling_LoadBalancing.md"],
+  },
+  {
+    id: "20-weaknesses",
+    number: "20",
+    title: "Personal Weaknesses Drill",
+    emoji: "🎯",
+    blurb:
+      "Targeted drill on your personal exam weak spots: DynamoDB hot partitions, Aurora custom endpoints, RDS IAM Auth, S3 CSE-C, Geo routing, WAF/Shield/FW Manager, CloudWatch Agent, SNS filter policies.",
+    weight: "Critical",
+    keyServices: [
+      "DynamoDB",
+      "Aurora",
+      "RDS IAM Auth",
+      "S3 CSE",
+      "Route 53",
+      "WAF",
+      "Shield",
+      "CloudWatch Agent",
+      "SNS",
+    ],
+    local: ["20_Weaknesses.md"],
+  },
 ];
 
 function buildSources(d: ModuleDef): NoteSource[] {
