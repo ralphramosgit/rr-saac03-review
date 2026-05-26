@@ -45,25 +45,28 @@ Each file follows the same pattern:
 
 ## Topic Index
 
-| #   | Topic                               | File                                                                 | Exam Weight         |
-| --- | ----------------------------------- | -------------------------------------------------------------------- | ------------------- |
-| 01  | AWS Overview                        | [notes/01_AWS_Overview.md](notes/01_AWS_Overview.md)                 | Foundation          |
-| 02  | Compute Services                    | [notes/02_Compute.md](notes/02_Compute.md)                           | ⭐⭐⭐⭐⭐ High     |
-| 03  | Storage Services                    | [notes/03_Storage.md](notes/03_Storage.md)                           | ⭐⭐⭐⭐⭐ High     |
-| 04  | Database Services                   | [notes/04_Database.md](notes/04_Database.md)                         | ⭐⭐⭐⭐⭐ High     |
-| 05  | Migration Services                  | [notes/05_Migration.md](notes/05_Migration.md)                       | ⭐⭐⭐ Medium       |
-| 06  | Networking & Content Delivery       | [notes/06_Networking.md](notes/06_Networking.md)                     | ⭐⭐⭐⭐⭐ High     |
-| 07  | Security & Identity                 | [notes/07_Security_Identity.md](notes/07_Security_Identity.md)       | ⭐⭐⭐⭐⭐ High     |
-| 08  | Management Tools                    | [notes/08_Management_Tools.md](notes/08_Management_Tools.md)         | ⭐⭐⭐ Medium       |
-| 09  | Analytics                           | [notes/09_Analytics.md](notes/09_Analytics.md)                       | ⭐⭐⭐ Medium       |
-| 10  | Billing & Cost Management           | [notes/10_Billing_Cost.md](notes/10_Billing_Cost.md)                 | ⭐⭐ Low-Med        |
-| 11  | Developer Tools                     | [notes/11_Developer_Tools.md](notes/11_Developer_Tools.md)           | ⭐⭐ Low            |
-| 12  | Application Services                | [notes/12_Application_Services.md](notes/12_Application_Services.md) | ⭐⭐⭐⭐ High       |
-| 13  | Front-end Web & Mobile              | [notes/13_Frontend_Mobile.md](notes/13_Frontend_Mobile.md)           | ⭐⭐ Low            |
-| 14  | Desktop & App Streaming             | [notes/14_Desktop_AppStreaming.md](notes/14_Desktop_AppStreaming.md) | ⭐ Very Low         |
-| 15  | Machine Learning & AI               | [notes/15_ML_AI.md](notes/15_ML_AI.md)                               | ⭐⭐ Low            |
-| 16  | Other AWS Services                  | [notes/16_Other_Services.md](notes/16_Other_Services.md)             | ⭐⭐ Low            |
-| 17  | Service Comparisons (cross-cutting) | [notes/17_Comparisons.md](notes/17_Comparisons.md)                   | ⭐⭐⭐⭐⭐ Critical |
+| #   | Topic                               | File                                                                   | Exam Weight         |
+| --- | ----------------------------------- | ---------------------------------------------------------------------- | ------------------- |
+| 01  | AWS Overview                        | [notes/01_AWS_Overview.md](notes/01_AWS_Overview.md)                   | Foundation          |
+| 02  | Compute Services                    | [notes/02_Compute.md](notes/02_Compute.md)                             | ⭐⭐⭐⭐⭐ High     |
+| 03  | Storage Services                    | [notes/03_Storage.md](notes/03_Storage.md)                             | ⭐⭐⭐⭐⭐ High     |
+| 04  | Database Services                   | [notes/04_Database.md](notes/04_Database.md)                           | ⭐⭐⭐⭐⭐ High     |
+| 05  | Migration Services                  | [notes/05_Migration.md](notes/05_Migration.md)                         | ⭐⭐⭐ Medium       |
+| 06  | Networking & Content Delivery       | [notes/06_Networking.md](notes/06_Networking.md)                       | ⭐⭐⭐⭐⭐ High     |
+| 07  | Security & Identity                 | [notes/07_Security_Identity.md](notes/07_Security_Identity.md)         | ⭐⭐⭐⭐⭐ High     |
+| 08  | Management Tools                    | [notes/08_Management_Tools.md](notes/08_Management_Tools.md)           | ⭐⭐⭐ Medium       |
+| 09  | Analytics                           | [notes/09_Analytics.md](notes/09_Analytics.md)                         | ⭐⭐⭐ Medium       |
+| 10  | Billing & Cost Management           | [notes/10_Billing_Cost.md](notes/10_Billing_Cost.md)                   | ⭐⭐ Low-Med        |
+| 11  | Developer Tools                     | [notes/11_Developer_Tools.md](notes/11_Developer_Tools.md)             | ⭐⭐ Low            |
+| 12  | Application Services                | [notes/12_Application_Services.md](notes/12_Application_Services.md)   | ⭐⭐⭐⭐ High       |
+| 13  | Front-end Web & Mobile              | [notes/13_Frontend_Mobile.md](notes/13_Frontend_Mobile.md)             | ⭐⭐ Low            |
+| 14  | Desktop & App Streaming             | [notes/14_Desktop_AppStreaming.md](notes/14_Desktop_AppStreaming.md)   | ⭐ Very Low         |
+| 15  | Machine Learning & AI               | [notes/15_ML_AI.md](notes/15_ML_AI.md)                                 | ⭐⭐ Low            |
+| 16  | Other AWS Services                  | [notes/16_Other_Services.md](notes/16_Other_Services.md)               | ⭐⭐ Low            |
+| 17  | Service Comparisons (cross-cutting) | [notes/17_Comparisons.md](notes/17_Comparisons.md)                     | ⭐⭐⭐⭐⭐ Critical |
+| 18  | Disaster Recovery (DR)              | [notes/18_Disaster_Recovery.md](notes/18_Disaster_Recovery.md)         | ⭐⭐⭐⭐ High       |
+| 19  | Auto Scaling & Load Balancing       | [notes/19_Scaling_LoadBalancing.md](notes/19_Scaling_LoadBalancing.md) | ⭐⭐⭐⭐⭐ High     |
+| 20  | Personal Weaknesses Drill           | [notes/20_Weaknesses.md](notes/20_Weaknesses.md)                       | 🎯 Targeted         |
 
 ---
 
