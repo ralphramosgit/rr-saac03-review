@@ -312,7 +312,14 @@ const DEFS: ModuleDef[] = [
     blurb:
       "ALB / NLB / GWLB deep dive, ASG mechanics, scaling policies (Simple / Step / Target Tracking / Predictive), lifecycle hooks, health checks, and exam patterns.",
     weight: "Critical",
-    keyServices: ["ALB", "NLB", "GWLB", "ASG", "Launch Template", "Target Group"],
+    keyServices: [
+      "ALB",
+      "NLB",
+      "GWLB",
+      "ASG",
+      "Launch Template",
+      "Target Group",
+    ],
     local: ["19_Scaling_LoadBalancing.md"],
   },
   {
@@ -335,6 +342,26 @@ const DEFS: ModuleDef[] = [
       "SNS",
     ],
     local: ["20_Weaknesses.md"],
+  },
+  {
+    id: "21-decoupling",
+    number: "21",
+    title: "Decoupling (Deep Dive)",
+    emoji: "🔗",
+    blurb:
+      "End-to-end decoupling stack: SQS, SNS, EventBridge, Step Functions, Kinesis, MSK, MQ. Patterns, limits, ordering/delivery semantics, and exam triggers.",
+    weight: "Critical",
+    keyServices: [
+      "SQS",
+      "SNS",
+      "EventBridge",
+      "Step Functions",
+      "Kinesis",
+      "MSK",
+      "Amazon MQ",
+    ],
+    local: ["21_Decoupling.md"],
+    saaFolder: "21-Decoupling",
   },
 ];
 

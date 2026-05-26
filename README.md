@@ -67,6 +67,7 @@ Each file follows the same pattern:
 | 18  | Disaster Recovery (DR)              | [notes/18_Disaster_Recovery.md](notes/18_Disaster_Recovery.md)         | ⭐⭐⭐⭐ High       |
 | 19  | Auto Scaling & Load Balancing       | [notes/19_Scaling_LoadBalancing.md](notes/19_Scaling_LoadBalancing.md) | ⭐⭐⭐⭐⭐ High     |
 | 20  | Personal Weaknesses Drill           | [notes/20_Weaknesses.md](notes/20_Weaknesses.md)                       | 🎯 Targeted         |
+| 21  | Decoupling (Deep Dive)              | [notes/21_Decoupling.md](notes/21_Decoupling.md)                       | ⭐⭐⭐⭐⭐ Critical |
 
 ---
 
